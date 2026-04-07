@@ -652,28 +652,30 @@
         </div>
       </div>
     </div>
-    <div class="contact-form">
+    <form class="contact-form" action="https://formspree.io/f/xgopdzoo" method="POST">
+      <input type="hidden" name="_subject" value="New Dissertation Enquiry">
+      <input type="hidden" name="_next" value="https://drkishorekanna1997-coder.github.io/medical-writing/#contact">
       <div class="form-row">
         <div class="form-field">
           <label class="form-label">Your Name</label>
-          <input id="cf-name" type="text" placeholder="Dr. Name">
+          <input type="text" name="name" placeholder="Dr. Name" required>
         </div>
         <div class="form-field">
           <label class="form-label">Specialty</label>
-          <input id="cf-specialty" type="text" placeholder="e.g. MS Orthopaedics">
+          <input type="text" name="specialty" placeholder="e.g. MS Orthopaedics">
         </div>
       </div>
       <div class="form-field">
         <label class="form-label">Email Address</label>
-        <input id="cf-email" type="email" placeholder="your@email.com">
+        <input type="email" name="email" placeholder="your@email.com" required>
       </div>
       <div class="form-field">
         <label class="form-label">University / Institution</label>
-        <input id="cf-university" type="text" placeholder="Your medical college / university">
+        <input type="text" name="university" placeholder="Your medical college / university">
       </div>
       <div class="form-field">
         <label class="form-label">Service Required</label>
-        <select id="cf-service">
+        <select name="service">
           <option value="">Select a service...</option>
           <option>Full Dissertation Writing</option>
           <option>Literature Review</option>
@@ -685,11 +687,10 @@
       </div>
       <div class="form-field">
         <label class="form-label">Dissertation Topic &amp; Timeline</label>
-        <textarea id="cf-message" placeholder="Briefly describe your topic and submission deadline..."></textarea>
+        <textarea name="message" placeholder="Briefly describe your topic and submission deadline..." required></textarea>
       </div>
-      <div id="cf-status" style="font-size:0.85rem;min-height:1.4rem;margin-bottom:0.5rem;"></div>
-      <button class="btn-submit" id="cf-btn" onclick="handleSubmit(this)">Send Enquiry →</button>
-    </div>
+      <button type="submit" class="btn-submit">Send Enquiry →</button>
+    </form>
   </div>
 </section>
 
@@ -710,55 +711,6 @@
     });
   }, { threshold: 0.1 });
   fadeEls.forEach(el => observer.observe(el));
-
-  // Contact form — Formspree
-  async function handleSubmit(btn) {
-    const name      = document.getElementById('cf-name').value.trim();
-    const specialty = document.getElementById('cf-specialty').value.trim();
-    const email     = document.getElementById('cf-email').value.trim();
-    const university= document.getElementById('cf-university').value.trim();
-    const service   = document.getElementById('cf-service').value;
-    const message   = document.getElementById('cf-message').value.trim();
-    const status    = document.getElementById('cf-status');
-
-    if (!name || !email || !message) {
-      status.style.color = '#e07070';
-      status.textContent = 'Please fill in Name, Email, and Topic at minimum.';
-      return;
-    }
-
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
-    status.style.color = 'rgba(247,244,239,0.5)';
-    status.textContent = 'Submitting your enquiry…';
-
-    try {
-      const res = await fetch('https://formspree.io/f/xgopdzoo', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name, specialty, email, university, service, message,
-          _replyto: email, _subject: 'New Dissertation Enquiry from ' + name })
-      });
-
-      if (res.ok) {
-        status.style.color = '#7ec8a0';
-        status.textContent = '✓ Enquiry sent! I will reply within 24 hours.';
-        btn.textContent = 'Sent ✓';
-        ['cf-name','cf-specialty','cf-email','cf-university','cf-message'].forEach(id => {
-          document.getElementById(id).value = '';
-        });
-        document.getElementById('cf-service').value = '';
-      } else {
-        const data = await res.json();
-        throw new Error(data.error || 'Server error');
-      }
-    } catch (err) {
-      status.style.color = '#e07070';
-      status.textContent = 'Something went wrong. Please email: medicalwriting1011@gmail.com';
-      btn.disabled = false;
-      btn.textContent = 'Send Enquiry →';
-    }
-  }
 </script>
 </body>
 </html>
