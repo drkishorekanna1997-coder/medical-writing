@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Kishore | Medical Thesis Writing Expert</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --cream: #f7f4ef;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --muted: #6b6b7a;
+    --accent: #2d5a8e;
+    --accent-light: #e8f0fa;
+    --border: rgba(201,168,76,0.25);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(247,244,239,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 600; letter-spacing: 0.04em;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: #fff; border: none;
+    padding: 0.45rem 1.2rem; border-radius: 2px;
+    font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; right: -80px; top: 10%; width: 55%;
+    height: 80%; border-radius: 4px;
+    background: linear-gradient(135deg, var(--accent-light) 0%, #d4e3f7 100%);
+    transform: rotate(2deg); z-index: 0;
+  }
+  .hero-text { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.1; font-weight: 300;
+    color: var(--ink); margin-bottom: 1.4rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: 1rem; color: var(--muted); line-height: 1.7;
+    max-width: 480px; margin-bottom: 2.4rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ink); color: var(--cream);
+    padding: 0.85rem 2rem; border-radius: 2px;
+    font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.25s;
+  }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-ghost {
+    color: var(--ink); border-bottom: 1px solid var(--gold);
+    font-size: 0.85rem; letter-spacing: 0.04em; text-decoration: none;
+    padding-bottom: 2px; transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--gold); }
+  .hero-stats {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 1.6rem;
+  }
+  .stat-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px; padding: 1.6rem 2rem;
+    text-align: center; min-width: 160px;
+    box-shadow: 0 4px 24px rgba(26,26,46,0.06);
+    animation: floatUp 3s ease-in-out infinite;
+  }
+  .stat-card:nth-child(2) { animation-delay: 1s; margin-right: 40px; }
+  .stat-card:nth-child(3) { animation-delay: 2s; }
+  @keyframes floatUp {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem; font-weight: 600; color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-top: 0.3rem;
+  }
+
+  /* ── SECTION GENERIC ── */
+  section { padding: 100px 5%; }
+  .section-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300;
+    line-height: 1.15; margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--muted); max-width: 560px; line-height: 1.7; margin-bottom: 3rem; }
+
+  /* ── ABOUT ── */
+  .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: center; }
+  .about-visual {
+    position: relative;
+  }
+  .about-img-placeholder {
+    width: 100%; aspect-ratio: 3/4;
+    background: linear-gradient(160deg, var(--accent-light), #c5d9f5);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; color: var(--accent);
+  }
+  .about-badge {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--ink); color: var(--cream);
+    padding: 1.2rem 1.6rem; border-radius: 4px;
+    text-align: center;
+  }
+  .about-badge strong {
+    font-family: 'Cormorant Garamond', serif; font-size: 2rem;
+    display: block; line-height: 1;
+  }
+  .about-badge span { font-size: 0.72rem; letter-spacing: 0.1em; opacity: 0.7; }
+  .credentials { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  .cred-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1rem; background: #fff; border-radius: 4px;
+    border-left: 3px solid var(--gold);
+  }
+  .cred-icon { font-size: 1.4rem; line-height: 1; }
+  .cred-title { font-weight: 500; font-size: 0.9rem; }
+  .cred-detail { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* ── SERVICES ── */
+  .services-section { background: var(--ink); color: var(--cream); }
+  .services-section .section-title { color: var(--cream); }
+  .services-section .section-sub { color: rgba(247,244,239,0.6); }
+  .services-section .section-eyebrow { color: var(--gold-light); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5px; }
+  .service-card {
+    padding: 2.4rem 2rem;
+    border: 1px solid rgba(201,168,76,0.15);
+    position: relative; overflow: hidden;
+    cursor: default; transition: all 0.3s;
+    background: rgba(255,255,255,0.02);
+  }
+  .service-card:hover { background: rgba(201,168,76,0.07); border-color: rgba(201,168,76,0.4); }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem; font-weight: 300; color: rgba(201,168,76,0.15);
+    position: absolute; top: 1rem; right: 1.5rem; line-height: 1;
+  }
+  .service-icon { font-size: 1.8rem; margin-bottom: 1.2rem; }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;
+    font-weight: 400; margin-bottom: 0.8rem; color: var(--cream);
+  }
+  .service-desc { font-size: 0.85rem; color: rgba(247,244,239,0.55); line-height: 1.65; margin-bottom: 1.2rem; }
+  .service-price { font-size: 0.75rem; color: var(--gold-light); letter-spacing: 0.06em; }
+
+  /* ── PROCESS ── */
+  .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; }
+  .process-step {
+    padding: 2rem; position: relative;
+    border-right: 1px solid var(--border);
+  }
+  .process-step:last-child { border-right: none; }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-weight: 300; color: var(--gold-light);
+    line-height: 1; margin-bottom: 1rem;
+  }
+  .step-title { font-weight: 500; margin-bottom: 0.5rem; }
+  .step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── SPECIALTIES ── */
+  .specialties-section { background: #fff; }
+  .specialty-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .tag {
+    padding: 0.5rem 1.2rem; border-radius: 2px;
+    border: 1px solid var(--border);
+    font-size: 0.82rem; color: var(--ink);
+    transition: all 0.2s; cursor: default;
+  }
+  .tag:hover { border-color: var(--gold); background: var(--gold); color: #fff; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .testimonial-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 4px; padding: 2rem;
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: '"'; font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; color: var(--gold-light); line-height: 0.5;
+    display: block; margin-bottom: 1rem;
+  }
+  .testimonial-text { font-size: 0.9rem; line-height: 1.7; color: var(--muted); margin-bottom: 1.5rem; font-style: italic; }
+  .testimonial-author strong { font-size: 0.9rem; }
+  .testimonial-author span { font-size: 0.78rem; color: var(--muted); display: block; margin-top: 0.2rem; }
+  .rating { color: var(--gold); margin-bottom: 1rem; font-size: 0.85rem; }
+
+  /* ── PRICING ── */
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+  .pricing-card {
+    border: 1px solid var(--border); border-radius: 4px; padding: 2.5rem 2rem;
+    position: relative; transition: all 0.3s;
+  }
+  .pricing-card:hover { box-shadow: 0 12px 40px rgba(26,26,46,0.1); transform: translateY(-4px); }
+  .pricing-card.featured {
+    border-color: var(--accent); border-width: 2px;
+    background: var(--accent-light);
+  }
+  .featured-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: #fff;
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 1rem; border-radius: 20px;
+  }
+  .pricing-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .pricing-amount {
+    font-family: 'Cormorant Garamond', serif; font-size: 2.8rem;
+    font-weight: 600; color: var(--accent); line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .pricing-amount sup { font-size: 1.2rem; }
+  .pricing-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.5rem; }
+  .pricing-features { list-style: none; margin-bottom: 2rem; }
+  .pricing-features li {
+    font-size: 0.85rem; padding: 0.45rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .pricing-features li::before { content: '✓'; color: var(--gold); font-weight: 600; }
+  .btn-outline {
+    display: block; text-align: center;
+    border: 1px solid var(--ink); padding: 0.8rem;
+    color: var(--ink); text-decoration: none; font-size: 0.82rem;
+    letter-spacing: 0.06em; text-transform: uppercase; border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover, .pricing-card.featured .btn-outline {
+    background: var(--accent); border-color: var(--accent); color: #fff;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section { background: var(--ink); color: var(--cream); }
+  .contact-section .section-title { color: var(--cream); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-icon { font-size: 1.2rem; padding-top: 0.1rem; }
+  .contact-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,244,239,0.5); }
+  .contact-value { font-size: 0.95rem; margin-top: 0.2rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-field input, .form-field select, .form-field textarea {
+    width: 100%; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--cream); padding: 0.85rem 1rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    border-radius: 2px; outline: none; transition: border-color 0.2s;
+  }
+  .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(247,244,239,0.35); }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-field select option { background: var(--ink); }
+  .form-field textarea { resize: vertical; min-height: 120px; }
+  .form-label { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(247,244,239,0.5); margin-bottom: 0.4rem; display: block; }
+  .btn-submit {
+    background: var(--gold); color: var(--ink); border: none;
+    padding: 1rem 2rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+    border-radius: 2px; cursor: pointer; transition: all 0.2s;
+    font-weight: 500;
+  }
+  .btn-submit:hover { background: #fff; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 5%; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem; color: var(--muted);
+  }
+
+  /* ── DIVIDER ── */
+  .divider { width: 48px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
+
+  /* ── SCROLL ANIMATION ── */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: all 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-stats { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">Dr. Kishore kanna, Dr. Andrew Xavier · MD</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#specialties">Specialties</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Enquire Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Medical Academic Writing Expert</div>
+    <h1>Thesis &amp; Dissertation Writing for <em>Medical Professionals</em></h1>
+    <p class="hero-sub">MD Pharmacology · Comprehensive support for postgraduate medical research — from protocol design to final submission.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">View Services</a>
+      <a href="#contact" class="btn-ghost">Start Your Project →</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-num">100+</div>
+      <div class="stat-label">Dissertations Supported</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">All</div>
+      <div class="stat-label">Medical Specialties</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">NMC</div>
+      <div class="stat-label">Compliant Work</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-img-placeholder">🩺</div>
+      <div class="about-badge">
+        <strong>3+</strong>
+        <span>Years Experience</span>
+      </div>
+    </div>
+    <div>
+      <div class="section-eyebrow">About Me</div>
+      <h2 class="section-title">A Clinician Who Speaks the Language of Research</h2>
+      <div class="divider"></div>
+      <p style="color:var(--muted);line-height:1.8;margin-bottom:1.5rem;">I understand the pressure of PG dissertations — the ethics committee deadlines, the statistical analysis panic, the challenge of turning raw clinical data into publication-ready academic writing. I've been there.</p>
+      <p style="color:var(--muted);line-height:1.8;">My dual training in Pharmacology and Orthopaedics gives me a uniquely broad perspective across both medical and surgical specialties. Every dissertation I support is written with clinical accuracy, methodological rigor, and full NMC compliance.</p>
+      <div class="credentials">
+        <div class="cred-item">
+          <div class="cred-icon">🎓</div>
+          <div>
+            <div class="cred-title">MD Pharmacology</div>
+            <div class="cred-detail">Expert in drug research, clinical trials, pharmacokinetics &amp; evidence synthesis</div>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">🏥</div>
+          <div>
+            <div class="cred-title">Medical College Faculty - Asisstant professor</div>
+            <div class="cred-detail">Active involvement in medical education &amp; postgraduate academic administration</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services-section">
+  <div class="section-eyebrow">What I Offer</div>
+  <h2 class="section-title" style="color:var(--cream);">Complete Dissertation Support</h2>
+  <p class="section-sub">From protocol to final submission — every component of your research, done right.</p>
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="service-num">01</div>
+      <div class="service-icon">📋</div>
+      <div class="service-name">Full Dissertation Writing</div>
+      <div class="service-desc">Complete thesis from introduction through discussion — structured, referenced, and NMC-compliant. Includes all chapters, tables, figures, and annexures.</div>
+      <div class="service-price">Starting ₹30,000</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">02</div>
+      <div class="service-icon">🔬</div>
+      <div class="service-name">Protocol &amp; Methodology</div>
+      <div class="service-desc">Ethics committee-ready research protocols with study design, inclusion/exclusion criteria, sampling methodology, and statistical plan.</div>
+      <div class="service-price">Starting ₹8,000</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">03</div>
+      <div class="service-icon">📊</div>
+      <div class="service-name">Statistical Analysis</div>
+      <div class="service-desc">Full data analysis using SPSS/GraphPad — descriptive stats, inferential tests, p-values, confidence intervals, and result interpretation.</div>
+      <div class="service-price">Starting ₹5,000</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">04</div>
+      <div class="service-icon">📚</div>
+      <div class="service-name">Literature Review</div>
+      <div class="service-desc">Comprehensive, critically appraised literature reviews with proper citation (Vancouver/APA). Includes recent Indian and international studies.</div>
+      <div class="service-price">Starting ₹6,000</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">05</div>
+      <div class="service-icon">✏️</div>
+      <div class="service-name">Review &amp; Editing</div>
+      <div class="service-desc">Plagiarism check, language refinement, structural editing, and reference formatting for already-drafted dissertations.</div>
+      <div class="service-price">Starting ₹4,000</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">06</div>
+      <div class="service-icon">📝</div>
+      <div class="service-name">Journal Publication Help</div>
+      <div class="service-desc">Convert your dissertation data into a publishable paper — abstract, structured manuscript, cover letter, and journal selection guidance.</div>
+      <div class="service-price">Starting ₹10,000</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section>
+  <div class="section-eyebrow">How It Works</div>
+  <h2 class="section-title">Simple, Transparent Process</h2>
+  <div class="divider"></div>
+  <div class="process-steps">
+    <div class="process-step fade-in">
+      <div class="step-num">01</div>
+      <div class="step-title">Free Consultation</div>
+      <div class="step-desc">Share your topic, timeline, and university requirements. We discuss scope and I give you a clear quote.</div>
+    </div>
+    <div class="process-step fade-in">
+      <div class="step-num">02</div>
+      <div class="step-title">Agreement &amp; Advance</div>
+      <div class="step-desc">Scope is confirmed in writing. 50% advance payment to begin work.</div>
+    </div>
+    <div class="process-step fade-in">
+      <div class="step-num">03</div>
+      <div class="step-title">Drafting &amp; Review</div>
+      <div class="step-desc">Regular drafts shared with you. Unlimited revisions within agreed scope. You stay involved.</div>
+    </div>
+    <div class="process-step fade-in">
+      <div class="step-num">04</div>
+      <div class="step-title">Final Delivery</div>
+      <div class="step-desc">Plagiarism report included. Formatted per your university norms. Balance payment on delivery.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALTIES -->
+<section id="specialties" class="specialties-section">
+  <div class="section-eyebrow">Areas of Expertise</div>
+  <h2 class="section-title">All Medical Specialties Covered</h2>
+  <p class="section-sub">My dual postgraduate background enables high-quality writing across both clinical and basic science disciplines.</p>
+  <div class="specialty-tags">
+    <span class="tag">Pharmacology</span><span class="tag">Orthopaedics</span>
+    <span class="tag">General Surgery</span><span class="tag">Medicine</span>
+    <span class="tag">Obstetrics &amp; Gynaecology</span><span class="tag">Paediatrics</span>
+    <span class="tag">Anaesthesiology</span><span class="tag">Radiology</span>
+    <span class="tag">Pathology</span><span class="tag">Microbiology</span>
+    <span class="tag">Dermatology</span><span class="tag">Ophthalmology</span>
+    <span class="tag">ENT</span><span class="tag">Psychiatry</span>
+    <span class="tag">Cardiology</span><span class="tag">Pulmonology</span>
+    <span class="tag">Neurology</span><span class="tag">Nephrology</span>
+    <span class="tag">Gastroenterology</span><span class="tag">Endocrinology</span>
+    <span class="tag">Community Medicine</span><span class="tag">Forensic Medicine</span>
+    <span class="tag">Emergency Medicine</span><span class="tag">Oncology</span>
+    <span class="tag">Urology</span><span class="tag">Plastic Surgery</span>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="section-eyebrow">Client Feedback</div>
+  <h2 class="section-title">What Doctors Say</h2>
+  <div class="divider"></div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-in">
+      <div class="rating">★★★★★</div>
+      <div class="testimonial-text">My dissertation on laparoscopic cholecystectomy outcomes was completed on time with excellent statistical analysis. The literature review was thorough and current. Highly recommend for surgical residents.</div>
+      <div class="testimonial-author">
+        <strong>Dr. Priya R.</strong>
+        <span>MS General Surgery, Tamil Nadu</span>
+      </div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <div class="rating">★★★★★</div>
+      <div class="testimonial-text">Was struggling with my statistical analysis for weeks. Got complete SPSS analysis with proper interpretation in just 4 days. The result tables were exactly as per our university format.</div>
+      <div class="testimonial-author">
+        <strong>Dr. Shailesh khandelwal.</strong>
+        <span>MD General Medicine, Gujarat</span>
+      </div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <div class="rating">★★★★★</div>
+      <div class="testimonial-text">Excellent literature review with 80+ references for my doppler study. The writing quality is on par with published papers. My guide was very impressed. Will definitely come back for journal submission help.</div>
+      <div class="testimonial-author">
+        <strong>Dr.Sanika Patil .</strong>
+        <span>MD Radiodiagnosis, Maharashtra</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-eyebrow">Transparent Pricing</div>
+  <h2 class="section-title">Packages for Every Need</h2>
+  <p class="section-sub">All packages include plagiarism report and 2 rounds of revision. Custom quotes available for complex projects.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card fade-in">
+      <div class="pricing-name">Essential</div>
+      <div class="pricing-amount"><sup>₹</sup>15,000</div>
+      <div class="pricing-desc">For residents who need targeted help</div>
+      <ul class="pricing-features">
+        <li>Literature Review (any specialty)</li>
+        <li>Methodology chapter</li>
+        <li>Vancouver/APA references</li>
+        <li>Plagiarism report</li>
+        <li>2 revisions</li>
+      </ul>
+      <a href="#contact" class="btn-outline">Get Started</a>
+    </div>
+    <div class="pricing-card featured fade-in">
+      <div class="featured-badge">Most Popular</div>
+      <div class="pricing-name">Complete Dissertation</div>
+      <div class="pricing-amount"><sup>₹</sup>35,000</div>
+      <div class="pricing-desc">Full thesis, start to finish</div>
+      <ul class="pricing-features">
+        <li>All chapters (Intro to Discussion)</li>
+        <li>Statistical analysis (SPSS)</li>
+        <li>Tables, figures &amp; graphs</li>
+        <li>Annexures &amp; proformas</li>
+        <li>Plagiarism report</li>
+        <li>Unlimited revisions (30 days)</li>
+      </ul>
+      <a href="#contact" class="btn-outline">Get Started</a>
+    </div>
+    <div class="pricing-card fade-in">
+      <div class="pricing-name">Publication Ready</div>
+      <div class="pricing-amount"><sup>₹</sup>50,000</div>
+      <div class="pricing-desc">Dissertation + journal paper</div>
+      <ul class="pricing-features">
+        <li>Everything in Complete</li>
+        <li>Journal manuscript preparation</li>
+        <li>Abstract (conference-ready)</li>
+        <li>Cover letter &amp; journal selection</li>
+        <li>Response to reviewer comments</li>
+        <li>Priority delivery</li>
+      </ul>
+      <a href="#contact" class="btn-outline">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-eyebrow" style="color:var(--gold-light)">Get In Touch</div>
+  <h2 class="section-title" style="color:var(--cream);margin-bottom:3rem;">Start Your Project Today</h2>
+  <div class="contact-grid">
+    <div>
+      <p style="color:rgba(247,244,239,0.6);line-height:1.8;margin-bottom:2rem;">I offer a free 15-minute consultation to understand your requirements. Share your topic and timeline — let's discuss how I can help you submit with confidence.</p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:medicalwriting1011@gmail.com" style="color:var(--cream);text-decoration:none;">medicalwriting1011@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-label">WhatsApp will be available after mail reply</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">India (Remote work across all states)</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⏱️</div>
+          <div>
+            <div class="contact-label">Response Time</div>
+            <div class="contact-value">Within 24 hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">Your Name</label>
+          <input id="cf-name" type="text" placeholder="Dr. Name">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Specialty</label>
+          <input id="cf-specialty" type="text" placeholder="e.g. MS Orthopaedics">
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Email Address</label>
+        <input id="cf-email" type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-field">
+        <label class="form-label">University / Institution</label>
+        <input id="cf-university" type="text" placeholder="Your medical college / university">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Service Required</label>
+        <select id="cf-service">
+          <option value="">Select a service...</option>
+          <option>Full Dissertation Writing</option>
+          <option>Literature Review</option>
+          <option>Statistical Analysis</option>
+          <option>Protocol &amp; Methodology</option>
+          <option>Review &amp; Editing</option>
+          <option>Journal Publication</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Dissertation Topic &amp; Timeline</label>
+        <textarea id="cf-message" placeholder="Briefly describe your topic and submission deadline..."></textarea>
+      </div>
+      <div id="cf-status" style="font-size:0.85rem;min-height:1.4rem;margin-bottom:0.5rem;"></div>
+      <button class="btn-submit" id="cf-btn" onclick="handleSubmit(this)">Send Enquiry →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2025 Dr. Kishore · Medical Thesis Writing Services</div>
+  <div>India · Confidential · NMC-Compliant</div>
+</footer>
+
+<script>
+  // Scroll animations
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // Contact form — Formspree
+  async function handleSubmit(btn) {
+    const name      = document.getElementById('cf-name').value.trim();
+    const specialty = document.getElementById('cf-specialty').value.trim();
+    const email     = document.getElementById('cf-email').value.trim();
+    const university= document.getElementById('cf-university').value.trim();
+    const service   = document.getElementById('cf-service').value;
+    const message   = document.getElementById('cf-message').value.trim();
+    const status    = document.getElementById('cf-status');
+
+    if (!name || !email || !message) {
+      status.style.color = '#e07070';
+      status.textContent = 'Please fill in Name, Email, and Topic at minimum.';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    status.style.color = 'rgba(247,244,239,0.5)';
+    status.textContent = 'Submitting your enquiry…';
+
+    try {
+      const res = await fetch('https://formspree.io/f/xgopdzoo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name, specialty, email, university, service, message,
+          _replyto: email, _subject: 'New Dissertation Enquiry from ' + name })
+      });
+
+      if (res.ok) {
+        status.style.color = '#7ec8a0';
+        status.textContent = '✓ Enquiry sent! I will reply within 24 hours.';
+        btn.textContent = 'Sent ✓';
+        ['cf-name','cf-specialty','cf-email','cf-university','cf-message'].forEach(id => {
+          document.getElementById(id).value = '';
+        });
+        document.getElementById('cf-service').value = '';
+      } else {
+        const data = await res.json();
+        throw new Error(data.error || 'Server error');
+      }
+    } catch (err) {
+      status.style.color = '#e07070';
+      status.textContent = 'Something went wrong. Please email: medicalwriting1011@gmail.com';
+      btn.disabled = false;
+      btn.textContent = 'Send Enquiry →';
+    }
+  }
+</script>
+</body>
+</html>
